@@ -17,6 +17,9 @@
         "url": "https://github.com/codingyu/laravel-goto-view.git"
     },
     "categories": [
+        "Other"
+    ],
+    "keywords":[
         "PHP",
         "Laravel"
     ],
