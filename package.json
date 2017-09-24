@@ -2,48 +2,28 @@
     "name": "laravel-goto-view",
     "displayName": "Laravel goto view",
     "description": "Quick jump to view",
-    "version": "1.0.1",
+    "version": "1.1.1",
     "publisher": "codingyu",
     "engines": {
         "vscode": "^1.15.0"
     },
     "icon": "images/icon.jpg",
     "bugs": {
-		"url": "https://github.com/codingyu/laravel-goto-view/issues"
-	},
-	"homepage": "https://github.com/codingyu/laravel-goto-view/blob/master/README.md",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/codingyu/laravel-goto-view.git"
-	},
+        "url": "https://github.com/codingyu/laravel-goto-view/issues"
+    },
+    "homepage": "https://github.com/codingyu/laravel-goto-view/blob/master/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/codingyu/laravel-goto-view.git"
+    },
     "categories": [
-        "Other"
+        "PHP",
+        "Laravel"
     ],
     "activationEvents": [
-        "onCommand:extension.gotoView"
+        "onLanguage:php"
     ],
     "main": "./out/src/extension",
-    "contributes": {
-        "commands": [
-            {
-                "command": "extension.gotoView",
-                "title": "Goto view (laravel)"
-            }
-        ],
-        "menus": {
-            "editor/context": [{
-                "when": "editorHasSelection",
-                "command": "extension.gotoView",
-                "group": "navigation"
-            }]
-        },
-        "keybindings": [
-			{
-				"command": "extension.gotoView",
-				"key": "Alt+V"
-			}
-		]
-    },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
         "compile": "tsc -watch -p ./",

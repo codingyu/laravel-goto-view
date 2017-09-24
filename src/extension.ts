@@ -1,29 +1,29 @@
 'use strict';
 
-import * as fs from "fs";
-import * as vscode from 'vscode';
-import Range = vscode.Range;
+import { workspace, languages, Hover, ExtensionContext} from 'vscode';
+import { LinkProvider } from './link';
+import * as util from './util';
 
-export function activate(context: vscode.ExtensionContext) {
-    // console.log('Congratulations, your extension "laravel-goto-view" is now active!');
-    let disposable = vscode.commands.registerCommand('extension.gotoView', gotoView);
-    context.subscriptions.push(disposable);
+const REG = /(['"])[^'"]*\1/;
+
+export function activate(context: ExtensionContext) {
+	let hover = languages.registerHoverProvider('php', {
+        provideHover(document, position, token) {
+			let linkRange = document.getWordRangeAtPosition(position, REG);
+			if(linkRange){
+				let filePath = util.getFilePath(document.getText(linkRange));
+				if(filePath != null){
+					return new Hover(filePath.replace(workspace.rootPath + '/',''));
+				}
+			}
+			return;
+        }
+	});
+	let link = languages.registerDocumentLinkProvider(['php'], new LinkProvider());
+    context.subscriptions.push(hover);
+    context.subscriptions.push(link);
 }
 
 export function deactivate() {
 	//
-}
-
-function gotoView() {
-	let uri = vscode.Uri;
-	let e = vscode.window.activeTextEditor;
-	let d = e.document;
-	let sel = e.selections;
-
-	let txt: string = d.getText(new Range(sel[0].start, sel[0].end));
-	let path = vscode.workspace.rootPath + "/resources/views/" + txt.replace(/\./g,'/') + ".blade.php";
-
-	fs.exists(path, function(exists) {
-		exists ? vscode.window.showTextDocument(uri.file(path)) : vscode.window.showInformationMessage('View does not exist!');;
-	});
 }
