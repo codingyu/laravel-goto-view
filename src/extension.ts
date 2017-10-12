@@ -7,7 +7,7 @@ import * as util from './util';
 const REG = /(['"])[^'"]*\1/;
 
 export function activate(context: ExtensionContext) {
-	let hover = languages.registerHoverProvider('php', {
+	let hover = languages.registerHoverProvider(['php','blade','laravel-blade'], {
         provideHover(document, position, token) {
 			let linkRange = document.getWordRangeAtPosition(position, REG);
 			if(linkRange){
@@ -19,7 +19,7 @@ export function activate(context: ExtensionContext) {
 			return;
         }
 	});
-	let link = languages.registerDocumentLinkProvider(['php'], new LinkProvider());
+	let link = languages.registerDocumentLinkProvider(['php','blade','laravel-blade'], new LinkProvider());
     context.subscriptions.push(hover);
     context.subscriptions.push(link);
 }

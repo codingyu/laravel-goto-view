@@ -2,7 +2,7 @@
     "name": "laravel-goto-view",
     "displayName": "Laravel goto view",
     "description": "Quick jump to view",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "publisher": "codingyu",
     "engines": {
         "vscode": "^1.15.0"
@@ -24,7 +24,7 @@
         "Laravel"
     ],
     "activationEvents": [
-        "onLanguage:php"
+        "*"
     ],
     "main": "./out/src/extension",
     "scripts": {
