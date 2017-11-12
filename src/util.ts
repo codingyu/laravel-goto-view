@@ -1,10 +1,10 @@
 'use strict';
 
-import { workspace } from 'vscode';
+import { workspace, TextDocument } from 'vscode';
 import * as fs from "fs";
 
-export function getFilePath(text:string) {
-    let filePath = workspace.rootPath + "/resources/views/" + text.replace(/\./g,'/').replace(/\"|\'/g,'') + ".blade.php";
+export function getFilePath(text:string, document:TextDocument) {
+    let filePath = workspace.getWorkspaceFolder(document.uri).uri.fsPath + "/resources/views/" + text.replace(/\./g,'/').replace(/\"|\'/g,'') + ".blade.php";
     if(fs.existsSync(filePath)){
         return filePath;
     }else{

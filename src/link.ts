@@ -13,10 +13,10 @@ export class LinkProvider implements DocumentLinkProvider {
             let result = line.text.match(reg);
             if (result != null) {
                 for (let item of result) {
-                    let filePath = util.getFilePath(item);
+                    let filePath = util.getFilePath(item, document);
                     if(filePath != null){
-                        let start = new Position(line.lineNumber, line.text.indexOf(item));
-                        let end = start.translate(0, item.length);
+                        let start = new Position(line.lineNumber, line.text.indexOf(item) + 1);
+                        let end = start.translate(0, item.length - 2);
                         let documentlink = new DocumentLink(new Range(start, end), Uri.file(filePath));
                         documentLinks.push(documentlink);
                     };
