@@ -1,7 +1,4 @@
 # Change Log
-All notable changes to the "laravel-goto-view" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-- Initial release
+## 1.1.3
+- Add support for multiple folder
