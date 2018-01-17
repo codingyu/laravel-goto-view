@@ -1,13 +1,27 @@
 'use strict';
 
-import { workspace, TextDocument } from 'vscode';
+import { workspace, TextDocument, Uri } from 'vscode';
 import * as fs from "fs";
 
 export function getFilePath(text:string, document:TextDocument) {
-    let filePath = workspace.getWorkspaceFolder(document.uri).uri.fsPath + "/resources/views/" + text.replace(/\./g,'/').replace(/\"|\'/g,'') + ".blade.php";
+    let config = workspace.getConfiguration('laravel_goto_view');
+    let filePath = workspace.getWorkspaceFolder(document.uri).uri.fsPath + config.folder[0] + "/" + text.replace(/\./g,'/').replace(/\"|\'/g,'') + ".blade.php";
     if(fs.existsSync(filePath)){
         return filePath;
     }else{
         return null;
     }
+}
+
+export function getFilePaths(text:string, document:TextDocument): any {
+    let config = workspace.getConfiguration('laravel_goto_view');
+    let result = [];
+    for (let item of config.folder) {
+        let showPath = item + "/" + text.replace(/\./g,'/').replace(/\"|\'/g,'') + ".blade.php";
+        let filePath = workspace.getWorkspaceFolder(document.uri).uri.fsPath + showPath;
+        if(fs.existsSync(filePath)){
+            result.push({"showPath": showPath, "fileUri": Uri.file(filePath)});
+        }
+    }
+    return result;
 }

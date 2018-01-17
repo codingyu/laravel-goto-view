@@ -1,28 +1,37 @@
 'use strict';
 
-import { workspace, languages, Hover, ExtensionContext} from 'vscode';
+import { workspace, languages, Hover, ExtensionContext, MarkdownString, Uri} from 'vscode';
 import { LinkProvider } from './link';
 import * as util from './util';
 
 const REG = /(['"])[^'"]*\1/;
 
 export function activate(context: ExtensionContext) {
+	let config = workspace.getConfiguration('laravel_goto_view');
 	let hover = languages.registerHoverProvider(['php','blade','laravel-blade'], {
         provideHover(document, position, token) {
 			let linkRange = document.getWordRangeAtPosition(position, REG);
 			if(linkRange){
-				let filePath = util.getFilePath(document.getText(linkRange), document);
+				let filePaths = util.getFilePaths(document.getText(linkRange), document);
 				let workspaceFolder = workspace.getWorkspaceFolder(document.uri);
-				if(filePath != null){
-					return new Hover(workspaceFolder.name + filePath.replace(workspaceFolder.uri.fsPath,''));
+				if(filePaths.length > 0){
+					let text:string = "";
+					for (let i in filePaths) {
+						text += i == '0' ? `- \`Default\`` : `- \`Other\``;
+						text += ` [${workspaceFolder.name + filePaths[i].showPath}](${filePaths[i].fileUri})\n`;
+					}
+					return new Hover(new MarkdownString(text));
 				}
 			}
 			return;
         }
 	});
-	let link = languages.registerDocumentLinkProvider(['php','blade','laravel-blade'], new LinkProvider());
-    context.subscriptions.push(hover);
-    context.subscriptions.push(link);
+	context.subscriptions.push(hover);
+	
+	if (config.quick_click) {
+		let link = languages.registerDocumentLinkProvider(['php','blade','laravel-blade'], new LinkProvider());
+		context.subscriptions.push(link);
+	}
 }
 
 export function deactivate() {
