@@ -17,8 +17,7 @@ export function activate(context: ExtensionContext) {
 				if(filePaths.length > 0){
 					let text:string = "";
 					for (let i in filePaths) {
-						text += i == '0' ? `- \`Default\`` : `- \`Other\``;
-						text += ` [${workspaceFolder.name + filePaths[i].showPath}](${filePaths[i].fileUri})\n`;
+						text += `\`${filePaths[i].name}\` [${workspaceFolder.name + filePaths[i].showPath}](${filePaths[i].fileUri})  \r`;
 					}
 					return new Hover(new MarkdownString(text));
 				}

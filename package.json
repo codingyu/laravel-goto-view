@@ -39,10 +39,17 @@
                 "laravel_goto_view.folder": {
                     "type": "array",
                     "default": [
-                        "/resources/views"
+                        {
+                            "name": "default",
+                            "path":"/resources/views"
+                        }
                     ],
                     "items": {
-                        "type": "string"
+                        "type": "object",
+                        "required": [
+                            "name",
+                            "path"
+                        ]
                     },
                     "minItems": 1,
                     "uniqueItems": true,
