@@ -37,19 +37,12 @@
                     "description": "Use 'Ctrl' or 'Alt' + click"
                 },
                 "laravel_goto_view.folder": {
-                    "type": "array",
-                    "default": [
-                        {
-                            "name": "default",
-                            "path":"/resources/views"
-                        }
-                    ],
+                    "type": "object",
+                    "default": {
+                        "default":"/resources/views"
+                    },
                     "items": {
-                        "type": "object",
-                        "required": [
-                            "name",
-                            "path"
-                        ]
+                        "type": "string"
                     },
                     "minItems": 1,
                     "uniqueItems": true,
