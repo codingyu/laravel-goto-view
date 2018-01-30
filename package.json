@@ -31,12 +31,17 @@
             "type": "object",
             "title": "Laravel goto view configuration",
             "properties": {
-                "laravel_goto_view.quick_click": {
+                "laravel_goto_view.quickClick": {
                     "type": "boolean",
                     "default": true,
                     "description": "Use 'Ctrl' or 'Alt' + click"
                 },
-                "laravel_goto_view.folder": {
+                "laravel_goto_view.folderTip": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Display path name"
+                },
+                "laravel_goto_view.folders": {
                     "type": "object",
                     "default": {
                         "default":"/resources/views"

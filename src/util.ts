@@ -4,14 +4,8 @@ import { workspace, TextDocument, Uri } from 'vscode';
 import * as fs from "fs";
 
 export function getFilePath(text:string, document:TextDocument) {
-    let config = workspace.getConfiguration('laravel_goto_view');
-    let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
-    let filePath = workspaceFolder + config.folder[0].path + "/" + text.replace(/\./g,'/').replace(/\"|\'/g,'') + ".blade.php";
-    if(fs.existsSync(filePath)){
-        return filePath;
-    }else{
-        return null;
-    }
+    let paths = getFilePaths(text, document);
+    return paths.length > 0 ? paths[0] : null;
 }
 
 export function getFilePaths(text:string, document:TextDocument): any {
@@ -21,7 +15,7 @@ export function getFilePaths(text:string, document:TextDocument): any {
     let result = [];
     if (text.indexOf("::") != -1) {
         let info = text.split('::');
-        let showPath = config.folder[info[0]] + "/" + info[1].replace(/\./g,'/') + ".blade.php";
+        let showPath = config.folders[info[0]] + "/" + info[1].replace(/\./g,'/') + ".blade.php";
         let filePath = workspaceFolder + showPath;
         if(fs.existsSync(filePath)){
             result.push({
@@ -31,8 +25,8 @@ export function getFilePaths(text:string, document:TextDocument): any {
             });
         }
     } else {
-        for (let item in config.folder) {
-            let showPath = config.folder[item] + "/" + text.replace(/\./g,'/') + ".blade.php";
+        for (let item in config.folders) {
+            let showPath = config.folders[item] + "/" + text.replace(/\./g,'/') + ".blade.php";
             let filePath = workspaceFolder + showPath;
             if(fs.existsSync(filePath)){
                 result.push({
