@@ -9,7 +9,7 @@ export class LinkProvider implements DocumentLinkProvider {
         let documentLinks = [];
         let index = 0;
         let reg = /(['"])[^'"]*\1/g;
-        if (config.quickClick) {
+        if (config.quickJump) {
             while (index < document.lineCount) {
                 let line = document.lineAt(index);
                 let result = line.text.match(reg);
