@@ -19,7 +19,7 @@
     "categories": [
         "Other"
     ],
-    "keywords":[
+    "keywords": [
         "PHP",
         "Laravel"
     ],
@@ -44,7 +44,7 @@
                 "laravel_goto_view.folders": {
                     "type": "object",
                     "default": {
-                        "default":"/resources/views"
+                        "default": "/resources/views"
                     },
                     "items": {
                         "type": "string"
