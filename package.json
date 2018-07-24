@@ -52,6 +52,18 @@
                     "minItems": 1,
                     "uniqueItems": true,
                     "description": "Multiple folders"
+                },
+                "laravel_goto_view.extensions": {
+                    "type": "object",
+                    "default": {
+                        "default": ".blade.php"
+                    },
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "description": "Multiple extensions"
                 }
             }
         }
