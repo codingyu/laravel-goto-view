@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.2.1
+- Added support for multiple view file extensions
+
 ## 1.2.0
 - Add settings
 - Display multiple matching files
