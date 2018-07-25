@@ -15,25 +15,29 @@ export function getFilePaths(text:string, document:TextDocument): any {
     let result = [];
     if (text.indexOf("::") != -1) {
         let info = text.split('::');
-        let showPath = config.folders[info[0]] + "/" + info[1].replace(/\./g,'/') + ".blade.php";
-        let filePath = workspaceFolder + showPath;
-        if(fs.existsSync(filePath)){
-            result.push({
-                "name": info[0],
-                "showPath": showPath,
-                "fileUri": Uri.file(filePath)
-            });
-        }
-    } else {
-        for (let item in config.folders) {
-            let showPath = config.folders[item] + "/" + text.replace(/\./g,'/') + ".blade.php";
+        for (let extension in config.extensions) {
+            let showPath = config.folders[info[0]] + "/" + info[1].replace(/\./g,'/') + config.extensions[extension];
             let filePath = workspaceFolder + showPath;
             if(fs.existsSync(filePath)){
                 result.push({
-                    "name": item,
+                    "name": info[0],
                     "showPath": showPath,
                     "fileUri": Uri.file(filePath)
                 });
+            }
+        }
+    } else {
+        for (let item in config.folders) {
+            for (let extension in config.extensions) {
+                let showPath = config.folders[item] + "/" + text.replace(/\./g,'/') + config.extensions[extension];
+                let filePath = workspaceFolder + showPath;
+                if(fs.existsSync(filePath)){
+                    result.push({
+                        "name": item,
+                        "showPath": showPath,
+                        "fileUri": Uri.file(filePath)
+                    });
+                }
             }
         }
     }

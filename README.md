@@ -11,6 +11,14 @@ Search according to the configured path
     "theme_xxx": "/resources/views/theme_xxx"
 }
 ``` 
+## `laravel_goto_view.extensions` 
+Search views according to the configured extensions
+```
+"laravel_goto_view.extensions": {
+    "default" : ".blade.php",
+    "inky": ".inky.php"
+}
+``` 
 ## `laravel_goto_view.quickJump`  
 Use 'Ctrl' or 'Alt' + click, jump to the first match file.
 ## `laravel_goto_view.folderTip`  
