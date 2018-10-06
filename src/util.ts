@@ -41,6 +41,23 @@ export function getFilePaths(text:string, document:TextDocument): any {
             }
         }
     }
-    
+
     return result;
+}
+
+function readText(uri: Uri) {
+
+    return new Promise((resolve, reject) => {
+
+        fs.readFile(uri.fsPath, (readErr, data) => {
+
+            if (readErr) {
+                reject(readErr.message);
+                return;
+            }
+
+            resolve(data.toString());
+
+        });
+    });
 }
