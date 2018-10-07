@@ -45,7 +45,7 @@ export function getFilePaths(text:string, document:TextDocument): any {
     return result;
 }
 
-function readText(uri: Uri) {
+export function readText(uri: Uri) {
 
     return new Promise((resolve, reject) => {
 
@@ -60,4 +60,9 @@ function readText(uri: Uri) {
 
         });
     });
+}
+
+export function scanViewPaths() {
+    let config = workspace.getConfiguration('laravel_goto_view');
+    console.log(config.folders);
 }
