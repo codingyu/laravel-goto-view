@@ -9,7 +9,7 @@ export function getFilePath(text: string, document: TextDocument) {
     return paths.length > 0 ? paths[0] : null;
 }
 
-export function getFilePaths(text: string, document: TextDocument): any {
+export function getFilePaths(text: string, document: TextDocument) {
     let paths = scanViewPaths(document);
     let config = workspace.getConfiguration('laravel_goto_view');
     let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
@@ -45,23 +45,6 @@ export function getFilePaths(text: string, document: TextDocument): any {
     }
 
     return result;
-}
-
-export function readText(uri: Uri) {
-
-    return new Promise((resolve, reject) => {
-
-        fs.readFile(uri.fsPath, (readErr, data) => {
-
-            if (readErr) {
-                reject(readErr.message);
-                return;
-            }
-
-            resolve(data.toString());
-
-        });
-    });
 }
 
 export function scanViewPaths(document: TextDocument) {
