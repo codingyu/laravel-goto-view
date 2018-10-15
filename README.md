@@ -1,6 +1,13 @@
 [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/codingyu.laravel-goto-view.svg)](https://marketplace.visualstudio.com/items?itemName=codingyu.laravel-goto-view) [![Installs](https://vsmarketplacebadge.apphb.com/installs/codingyu.laravel-goto-view.svg)](https://marketplace.visualstudio.com/items?itemName=codingyu.laravel-goto-view)
+
 # How to use
 ![How to use](images/use.gif)
+
+# Features
+- 👨‍💻
+- Support for custom path
+- Support for [nwidart/laravel-modules](https://packagist.org/packages/nwidart/laravel-modules)
+
 # Settings
 ## `laravel_goto_view.folders`
 Search according to the configured path

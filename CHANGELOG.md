@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.2.2
+- Added support for [nwidart/laravel-modules](https://packagist.org/packages/nwidart/laravel-modules)
+
 ## 1.2.1
 - Added support for multiple view file extensions
 
