@@ -53,11 +53,13 @@ export function scanViewPaths(document: TextDocument) {
     Object.assign(folders, configFolders);
     let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
     let modulePath = path.join(workspaceFolder, 'Modules');
-    fs.readdirSync(modulePath).forEach(element => {
-        let file = path.join(modulePath, element);
-        if (fs.statSync(file).isDirectory()) {
-            folders[element.toLocaleLowerCase()] = "/Modules/" + element + "/resources/views";
-        }
-    });
+    if (fs.existsSync(modulePath)){
+        fs.readdirSync(modulePath).forEach(element => {
+            let file = path.join(modulePath, element);
+            if (fs.statSync(file).isDirectory()) {
+                folders[element.toLocaleLowerCase()] = "/Modules/" + element + "/resources/views";
+            }
+        });
+    }
     return folders;
 }
