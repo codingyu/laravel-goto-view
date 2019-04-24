@@ -13,7 +13,6 @@ export function getFilePaths(text: string, document: TextDocument) {
     let paths = scanViewPaths(document);
     let config = workspace.getConfiguration('laravel_goto_view');
     let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
-    text = text.replace(/\"|\'/g, '');
     let result = [];
     if (text.indexOf("::") != -1) {
         let info = text.split('::');
