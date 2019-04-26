@@ -8,7 +8,7 @@ export class LinkProvider implements vscode.DocumentLinkProvider {
         let documentLinks = [];
         let config = vscode.workspace.getConfiguration('laravel_goto_view');
         let index = 0;
-        let reg = /(?<=view\(["']|@include\(["']).*(?=["'])/g;
+        let reg = /(?<=view\(|@include\(|@extends\(|@component\()(['"])[^'"]*\1/g;
         if (config.quickJump) {
             while (index < doc.lineCount) {
                 let line = doc.lineAt(index);
@@ -16,7 +16,7 @@ export class LinkProvider implements vscode.DocumentLinkProvider {
                 if (result != null) {
                     for (let item of result) {
                         let file = util.getFilePath(item, doc);
-                        if(file != null){
+                        if (file != null) {
                             let start = new vscode.Position(line.lineNumber, line.text.indexOf(item));
                             let end = start.translate(0, item.length);
                             let documentlink = new vscode.DocumentLink(new vscode.Range(start, end), file.fileUri);

@@ -13,6 +13,7 @@ export function getFilePaths(text: string, document: TextDocument) {
     let paths = scanViewPaths(document);
     let config = workspace.getConfiguration('laravel_goto_view');
     let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
+    text = text.replace(/\"|\'/g, '');
     let result = [];
     if (text.indexOf("::") != -1) {
         let info = text.split('::');
@@ -52,7 +53,7 @@ export function scanViewPaths(document: TextDocument) {
     Object.assign(folders, configFolders);
     let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
     let modulePath = path.join(workspaceFolder, 'Modules');
-    if (fs.existsSync(modulePath)){
+    if (fs.existsSync(modulePath)) {
         fs.readdirSync(modulePath).forEach(element => {
             let file = path.join(modulePath, element);
             if (fs.statSync(file).isDirectory()) {

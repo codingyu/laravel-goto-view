@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.5
+- Optimize regular expressions
+
+## 1.2.3
+- Fixed bug
+
 ## 1.2.2
 - Added support for [nwidart/laravel-modules](https://packagist.org/packages/nwidart/laravel-modules)
 

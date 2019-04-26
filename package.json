@@ -2,7 +2,7 @@
     "name": "laravel-goto-view",
     "displayName": "Laravel goto view",
     "description": "Quick jump to view",
-    "version": "1.2.3",
+    "version": "1.2.5",
     "publisher": "codingyu",
     "engines": {
         "vscode": "^1.19.0"

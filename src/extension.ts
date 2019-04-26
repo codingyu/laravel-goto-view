@@ -1,6 +1,6 @@
 'use strict';
 
-import { workspace, languages, ExtensionContext} from 'vscode';
+import { workspace, languages, ExtensionContext } from 'vscode';
 import { LinkProvider } from './providers/linkProvider';
 import { HoverProvider } from './providers/hoverProvider';
 
