@@ -2,6 +2,7 @@
 
 import { workspace, TextDocument, Uri } from 'vscode';
 import * as fs from "fs";
+import * as path from "path";
 
 export function getFilePath(text: string, document: TextDocument) {
     let paths = getFilePaths(text, document);
@@ -9,34 +10,62 @@ export function getFilePath(text: string, document: TextDocument) {
 }
 
 export function getFilePaths(text: string, document: TextDocument) {
-    let path = scanLangPaths(document);
-    let extension = '.php';
+    let paths = scanViewPaths(document);
+    let config = workspace.getConfiguration('laravel_goto_view');
     let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
-
     text = text.replace(/\"|\'/g, '');
     let result = [];
-    let split = text.split('.');
+    
+    if (text.indexOf("::") != -1) {
+        let info = text.split('::');
+        let folder = info[0]
+        let files = info[1].split('.').join('/')
 
-    while (split.length) {
-        let join = split.length > 0 ? split.join('/') : `${split}/`;
-        let showPath = `${path}/${join}${extension}`;
-        let filePath = workspaceFolder + showPath;
-
-        if (fs.existsSync(filePath)) {
-            result.push({
-                "name": 'path',
-                "showPath": showPath,
-                "fileUri": Uri.file(filePath)
-            });
-            split = []
-        } else {
-            split.pop();
+        for (let item in paths) {
+            for (let extension in config.extensions) {
+                let showPath = paths[item] + `/${folder}/${files}` + config.extensions[extension];
+                let filePath = workspaceFolder + showPath;
+                if (fs.existsSync(filePath)) {
+                    result.push({
+                        "name": item,
+                        "showPath": showPath,
+                        "fileUri": Uri.file(filePath)
+                    });
+                }
+            }
+        }
+    } else {
+        for (let item in paths) {
+            for (let extension in config.extensions) {
+                let showPath = paths[item] + "/" + text.replace(/\./g, '/') + config.extensions[extension];
+                let filePath = workspaceFolder + showPath;
+                if (fs.existsSync(filePath)) {
+                    result.push({
+                        "name": item,
+                        "showPath": showPath,
+                        "fileUri": Uri.file(filePath)
+                    });
+                }
+            }
         }
     }
 
     return result;
 }
 
-export function scanLangPaths(document: TextDocument) {
-    return workspace.getConfiguration('laravel_goto_lang.folders').default;
+export function scanViewPaths(document: TextDocument) {
+    let configFolders = workspace.getConfiguration('laravel_goto_view.folders');
+    let folders = {};
+    Object.assign(folders, configFolders);
+    let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
+    let modulePath = path.join(workspaceFolder, 'Modules');
+    if (fs.existsSync(modulePath)) {
+        fs.readdirSync(modulePath).forEach(element => {
+            let file = path.join(modulePath, element);
+            if (fs.statSync(file).isDirectory()) {
+                folders[element.toLocaleLowerCase()] = "/Modules/" + element + "/resources/views";
+            }
+        });
+    }
+    return folders;
 }
