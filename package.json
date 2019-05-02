@@ -1,21 +1,21 @@
 {
-    "name": "laravel-goto-lang",
-    "displayName": "Laravel goto lang",
-    "description": "Quick jump to lang",
-    "version": "0.0.1",
-    "publisher": "ctf0",
+    "name": "laravel-goto-view",
+    "displayName": "Laravel goto view",
+    "description": "Quick jump to view",
+    "version": "1.2.5",
+    "publisher": "codingyu",
     "engines": {
         "vscode": "^1.19.0"
     },
+    "icon": "images/icon.jpg",
     "bugs": {
-        "url": "https://github.com/ctf0/laravel-goto-lang/issues"
+        "url": "https://github.com/codingyu/laravel-goto-view/issues"
     },
-    "homepage": "https://github.com/ctf0/laravel-goto-lang/blob/master/README.md",
+    "homepage": "https://github.com/codingyu/laravel-goto-view/blob/master/README.md",
     "repository": {
         "type": "git",
-        "url": "https://github.com/ctf0/laravel-goto-lang.git"
+        "url": "https://github.com/codingyu/laravel-goto-view.git"
     },
-    "icon": "images/logo.png",
     "categories": [
         "Other"
     ],
@@ -29,12 +29,23 @@
     "contributes": {
         "configuration": {
             "type": "object",
-            "title": "Laravel goto lang configuration",
+            "title": "Laravel goto view configuration",
             "properties": {
-                "laravel_goto_lang.folders": {
+                "laravel_goto_view.quickJump": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Use 'Ctrl' or 'Alt' + click"
+                },
+                "laravel_goto_view.folderTip": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Display path name"
+                },
+                "laravel_goto_view.folders": {
                     "type": "object",
                     "default": {
-                        "default": "/resources/lang/en"
+                        "default": "/resources/views"
+                        "vendor": "/resources/views/vendor"
                     },
                     "items": {
                         "type": "string"
@@ -43,7 +54,7 @@
                     "uniqueItems": true,
                     "description": "Multiple folders"
                 },
-                "laravel_goto_lang.extensions": {
+                "laravel_goto_view.extensions": {
                     "type": "object",
                     "default": {
                         "default": ".blade.php"
