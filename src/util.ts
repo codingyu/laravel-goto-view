@@ -15,17 +15,23 @@ export function getFilePaths(text: string, document: TextDocument) {
     let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
     text = text.replace(/\"|\'/g, '');
     let result = [];
+    
     if (text.indexOf("::") != -1) {
         let info = text.split('::');
-        for (let extension in config.extensions) {
-            let showPath = paths[info[0]] + "/" + info[1].replace(/\./g, '/') + config.extensions[extension];
-            let filePath = workspaceFolder + showPath;
-            if (fs.existsSync(filePath)) {
-                result.push({
-                    "name": info[0],
-                    "showPath": showPath,
-                    "fileUri": Uri.file(filePath)
-                });
+        let folder = info[0]
+        let files = info[1].split('.').join('/')
+
+        for (let item in paths) {
+            for (let extension in config.extensions) {
+                let showPath = paths[item] + `/${folder}/${files}` + config.extensions[extension];
+                let filePath = workspaceFolder + showPath;
+                if (fs.existsSync(filePath)) {
+                    result.push({
+                        "name": item,
+                        "showPath": showPath,
+                        "fileUri": Uri.file(filePath)
+                    });
+                }
             }
         }
     } else {
