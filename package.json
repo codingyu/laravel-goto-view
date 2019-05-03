@@ -44,7 +44,8 @@
                 "laravel_goto_view.folders": {
                     "type": "object",
                     "default": {
-                        "default": "/resources/views"
+                        "default": "/resources/views",
+                        "vendor": "/resources/views/vendor"
                     },
                     "items": {
                         "type": "string"

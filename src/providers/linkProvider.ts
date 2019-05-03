@@ -1,12 +1,21 @@
 'use strict';
 
-import * as vscode from "vscode";
+import {
+    DocumentLinkProvider as vsDocumentLinkProvider,
+    TextDocument,
+    CancellationToken,
+    ProviderResult,
+    DocumentLink,
+    workspace,
+    Position,
+    Range,
+} from "vscode"
 import * as util from '../util';
 
-export class LinkProvider implements vscode.DocumentLinkProvider {
-    public provideDocumentLinks(doc: vscode.TextDocument, token: vscode.CancellationToken): vscode.ProviderResult<vscode.DocumentLink[]> {
+export class LinkProvider implements vsDocumentLinkProvider {
+    public provideDocumentLinks(doc: TextDocument, token: CancellationToken): ProviderResult<DocumentLink[]> {
         let documentLinks = [];
-        let config = vscode.workspace.getConfiguration('laravel_goto_view');
+        let config = workspace.getConfiguration('laravel_goto_view');
         let index = 0;
         let reg = /(?<=view\(|@include\(|@extends\(|@component\()(['"])[^'"]*\1/g;
         if (config.quickJump) {
@@ -17,9 +26,9 @@ export class LinkProvider implements vscode.DocumentLinkProvider {
                     for (let item of result) {
                         let file = util.getFilePath(item, doc);
                         if (file != null) {
-                            let start = new vscode.Position(line.lineNumber, line.text.indexOf(item));
+                            let start = new Position(line.lineNumber, line.text.indexOf(item));
                             let end = start.translate(0, item.length);
-                            let documentlink = new vscode.DocumentLink(new vscode.Range(start, end), file.fileUri);
+                            let documentlink = new DocumentLink(new Range(start, end), file.fileUri);
                             documentLinks.push(documentlink);
                         };
                     }
