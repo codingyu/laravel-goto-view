@@ -17,8 +17,8 @@ export function getFilePaths(text: string, document: TextDocument) {
     let result = [];
 
     for (let item in paths) {
-        for (let extension in config.extensions) {
-            let showPath = paths[item] + `/${file}` + config.extensions[extension];
+        for (let extension of config.extensions) {
+            let showPath = paths[item] + `/${file}` + extension;
             let filePath = workspaceFolder + showPath;
 
             if (fs.existsSync(filePath)) {
@@ -34,12 +34,10 @@ export function getFilePaths(text: string, document: TextDocument) {
     return result;
 }
 
-export function scanViewPaths(workspaceFolder, config) {
-    let configFolders = config.folders;
+function scanViewPaths(workspaceFolder, config) {
+    let folders = Object.assign({}, config.folders);
 
     // Modules
-    let folders = {};
-    Object.assign(folders, configFolders);
     let modulePath = path.join(workspaceFolder, 'Modules');
     if (fs.existsSync(modulePath)) {
         fs.readdirSync(modulePath).forEach(element => {

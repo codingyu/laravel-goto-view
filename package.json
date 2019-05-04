@@ -2,7 +2,7 @@
     "name": "laravel-goto-view",
     "displayName": "Laravel goto view",
     "description": "Quick jump to view",
-    "version": "1.2.5",
+    "version": "1.3.0",
     "publisher": "codingyu",
     "engines": {
         "vscode": "^1.19.0"
@@ -55,10 +55,10 @@
                     "description": "Multiple folders"
                 },
                 "laravel_goto_view.extensions": {
-                    "type": "object",
-                    "default": {
-                        "default": ".blade.php"
-                    },
+                    "type": "array",
+                    "default": [
+                        ".blade.php"
+                    ],
                     "items": {
                         "type": "string"
                     },
@@ -77,10 +77,10 @@
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
+        "@types/mocha": "^2.2.32",
         "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+        "mocha": "^6.1.4",
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0"
     }
 }
