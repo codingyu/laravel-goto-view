@@ -3,7 +3,6 @@
 import {
     DocumentLinkProvider as vsDocumentLinkProvider,
     TextDocument,
-    CancellationToken,
     ProviderResult,
     DocumentLink,
     workspace,
@@ -13,7 +12,7 @@ import {
 import * as util from '../util';
 
 export class LinkProvider implements vsDocumentLinkProvider {
-    public provideDocumentLinks(doc: TextDocument, token: CancellationToken): ProviderResult<DocumentLink[]> {
+    public provideDocumentLinks(doc: TextDocument): ProviderResult<DocumentLink[]> {
         let documentLinks = [];
         let config = workspace.getConfiguration('laravel_goto_view');
         let index = 0;

@@ -4,7 +4,6 @@ import {
     HoverProvider as vsHoverProvider,
     TextDocument,
     Position,
-    CancellationToken,
     ProviderResult,
     Hover,
     workspace,
@@ -13,7 +12,7 @@ import {
 import * as util from '../util';
 
 export class HoverProvider implements vsHoverProvider {
-    provideHover(doc: TextDocument, pos: Position, token: CancellationToken): ProviderResult<Hover> {
+    provideHover(doc: TextDocument, pos: Position): ProviderResult<Hover> {
         let reg = /(?<=view\(|@include\(|@extends\(|@component\()(['"])[^'"]*\1/;
         let config = workspace.getConfiguration('laravel_goto_view');
         let linkRange = doc.getWordRangeAtPosition(pos, reg);
