@@ -11,12 +11,13 @@ import {
 } from "vscode"
 import * as util from '../util';
 
-export class LinkProvider implements vsDocumentLinkProvider {
+export default class LinkProvider implements vsDocumentLinkProvider {
     public provideDocumentLinks(doc: TextDocument): ProviderResult<DocumentLink[]> {
         let documentLinks = [];
         let config = workspace.getConfiguration('laravel_goto_view');
         let index = 0;
         let reg = /(?<=view\(|@include\(|@extends\(|@component\()(['"])[^'"]*\1/g;
+
         if (config.quickJump) {
             while (index < doc.lineCount) {
                 let line = doc.lineAt(index);
@@ -35,6 +36,7 @@ export class LinkProvider implements vsDocumentLinkProvider {
                 index++;
             }
         }
+
         return documentLinks;
     }
 }

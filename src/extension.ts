@@ -1,8 +1,8 @@
 'use strict';
 
 import { languages, ExtensionContext } from 'vscode';
-import { LinkProvider } from './providers/linkProvider';
-import { HoverProvider } from './providers/hoverProvider';
+import LinkProvider from './providers/linkProvider';
+import HoverProvider from './providers/hoverProvider';
 
 export function activate(context: ExtensionContext) {
     let hover = languages.registerHoverProvider(['php', 'blade', 'laravel-blade'], new HoverProvider());
