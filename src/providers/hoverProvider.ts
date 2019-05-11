@@ -7,7 +7,7 @@ import {
     ProviderResult,
     Hover,
     workspace,
-    MarkdownString,
+    MarkdownString
 } from "vscode";
 import * as util from '../util';
 
@@ -23,6 +23,7 @@ export default class HoverProvider implements vsHoverProvider {
         let workspaceFolder = workspace.getWorkspaceFolder(doc.uri);
         if (filePaths.length > 0) {
             let text: string = "";
+
             for (let i in filePaths) {
                 text += config.folderTip ? `\`${filePaths[i].name}\`` : '';
                 text += ` [${workspaceFolder.name + filePaths[i].showPath}](${filePaths[i].fileUri})  \r`;

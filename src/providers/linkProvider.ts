@@ -7,7 +7,7 @@ import {
     DocumentLink,
     workspace,
     Position,
-    Range,
+    Range
 } from "vscode"
 import * as util from '../util';
 
@@ -22,9 +22,11 @@ export default class LinkProvider implements vsDocumentLinkProvider {
             while (index < doc.lineCount) {
                 let line = doc.lineAt(index);
                 let result = line.text.match(reg);
+
                 if (result != null) {
                     for (let item of result) {
                         let file = util.getFilePath(item, doc);
+
                         if (file != null) {
                             let start = new Position(line.lineNumber, line.text.indexOf(item));
                             let end = start.translate(0, item.length);
