@@ -10,36 +10,23 @@ export function getFilePath(text: string, document: TextDocument) {
 }
 
 export function getFilePaths(text: string, document: TextDocument) {
-    let paths = scanViewPaths(document);
-    let config = workspace.getConfiguration('laravel_goto_view');
     let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
-    text = text.replace(/\"|\'/g, '');
+    let config = workspace.getConfiguration('laravel_goto_view');
+    let paths = scanViewPaths(workspaceFolder, config);
+    let file = text.replace(/\"|\'/g, '').replace(/::|\./g, '/');
     let result = [];
-    if (text.indexOf("::") != -1) {
-        let info = text.split('::');
-        for (let extension in config.extensions) {
-            let showPath = paths[info[0]] + "/" + info[1].replace(/\./g, '/') + config.extensions[extension];
+
+    for (let item in paths) {
+        for (let extension of config.extensions) {
+            let showPath = paths[item] + `/${file}` + extension;
             let filePath = workspaceFolder + showPath;
+
             if (fs.existsSync(filePath)) {
                 result.push({
-                    "name": info[0],
+                    "name": item,
                     "showPath": showPath,
                     "fileUri": Uri.file(filePath)
                 });
-            }
-        }
-    } else {
-        for (let item in paths) {
-            for (let extension in config.extensions) {
-                let showPath = paths[item] + "/" + text.replace(/\./g, '/') + config.extensions[extension];
-                let filePath = workspaceFolder + showPath;
-                if (fs.existsSync(filePath)) {
-                    result.push({
-                        "name": item,
-                        "showPath": showPath,
-                        "fileUri": Uri.file(filePath)
-                    });
-                }
             }
         }
     }
@@ -47,11 +34,10 @@ export function getFilePaths(text: string, document: TextDocument) {
     return result;
 }
 
-export function scanViewPaths(document: TextDocument) {
-    let configFolders = workspace.getConfiguration('laravel_goto_view.folders');
-    let folders = {};
-    Object.assign(folders, configFolders);
-    let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
+function scanViewPaths(workspaceFolder, config) {
+    let folders = Object.assign({}, config.folders);
+
+    // Modules
     let modulePath = path.join(workspaceFolder, 'Modules');
     if (fs.existsSync(modulePath)) {
         fs.readdirSync(modulePath).forEach(element => {
@@ -61,5 +47,6 @@ export function scanViewPaths(document: TextDocument) {
             }
         });
     }
+
     return folders;
 }

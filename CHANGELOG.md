@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.3.0
+- add a way to stop the extension from search big files
+- fix vendor resolveing
+
 ## 1.2.5
 - Optimize regular expressions
 
