@@ -13,13 +13,13 @@ import * as util from '../util';
 
 export default class LinkProvider implements vsDocumentLinkProvider {
     public provideDocumentLinks(doc: TextDocument): ProviderResult<DocumentLink[]> {
-        let reg = /(?<=view\(|@include\(|@extends\(|@component\()(['"])[^'"]*\1/g;
-        let config = workspace.getConfiguration('laravel_goto_view');
-        let linesCount = doc.lineCount
         let documentLinks = [];
-        let index = 0;
+        let config = workspace.getConfiguration('laravel_goto_view');
 
-        if (config.quickJump && linesCount <= config.maxLinesCount) {
+        if (config.quickJump) {
+            let reg = new RegExp(config.regex, 'g');
+            let linesCount = doc.lineCount <= config.maxLinesCount ? doc.lineCount : config.maxLinesCount
+            let index = 0;
             while (index < linesCount) {
                 let line = doc.lineAt(index);
                 let result = line.text.match(reg);

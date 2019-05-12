@@ -4,17 +4,21 @@
 
 ![How to use](images/use.gif)
 
-# Features
-
-- 👨‍💻
-- Support for custom path
-- Support for [nwidart/laravel-modules](https://packagist.org/packages/nwidart/laravel-modules)
+# 🚀🚀🚀
 
 # Settings
 
+## regex
+Custom regex for matching strings.
+
+## maxLinesCount
+Maximum number of scanning rows.
+
+Default: 666 😂
+
 ## folders
 
-Search according to the configured path
+Search according to the configured path.
 
 ```json
 "laravel_goto_view.folders": {
@@ -25,7 +29,7 @@ Search according to the configured path
 
 ## extensions
 
-Search views according to the configured extensions
+Search views according to the configured extensions.
 
 ```json
 "laravel_goto_view.extensions": [
@@ -36,8 +40,9 @@ Search views according to the configured extensions
 
 ## quickJump
 
-- Use `Ctrl` or `Alt` + `click` to jump to the first matched file.
+Use `Ctrl` or `Alt` + `click` to jump to the first matched file.
 
 ## folderTip
 
-- Display the path name of the configuration
+Display the path name of the configuration.
+

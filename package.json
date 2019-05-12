@@ -37,8 +37,13 @@
                 },
                 "laravel_goto_view.maxLinesCount": {
                     "type": "integer",
-                    "default": 300,
-                    "description": "stop the extension if the opened file lines count is more than"
+                    "default": 666,
+                    "description": "Maximum number of scanning rows"
+                },
+                "laravel_goto_view.regex": {
+                    "type": "string",
+                    "default": "(?<=view\\(|@include\\(|@extends\\(|@component\\()(['\"])[^'\"]*\\1",
+                    "description": "Custom regex for matching strings"
                 },
                 "laravel_goto_view.folders": {
                     "type": "object",

@@ -1,8 +1,9 @@
 # Change Log
 
 ## 1.3.0
-- add a way to stop the extension from search big files
-- fix vendor resolveing
+- Fix vendor resolveing
+- Add a way to stop the extension from search big files
+- Add more personalized configuration, please check the introduction
 
 ## 1.2.5
 - Optimize regular expressions

@@ -13,12 +13,20 @@ export function getFilePaths(text: string, document: TextDocument) {
     let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
     let config = workspace.getConfiguration('laravel_goto_view');
     let paths = scanViewPaths(workspaceFolder, config);
-    let file = text.replace(/\"|\'/g, '').replace(/::|\./g, '/');
+    let file = text.replace(/\"|\'/g, '').replace(/\./g, '/').split('::');
     let result = [];
 
     for (let item in paths) {
+        let showPath = paths[item] + `/${file[0]}`;
+        if (file.length > 1) {
+            if (item !== file[0]) {
+                continue;
+            } else {
+                showPath = paths[item] + `/${file[1]}`;
+            }
+        }
         for (let extension of config.extensions) {
-            let showPath = paths[item] + `/${file}` + extension;
+            showPath = showPath + extension;
             let filePath = workspaceFolder + showPath;
 
             if (fs.existsSync(filePath)) {
