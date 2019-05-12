@@ -8,14 +8,7 @@
         "vscode": "^1.19.0"
     },
     "icon": "images/icon.jpg",
-    "bugs": {
-        "url": "https://github.com/codingyu/laravel-goto-view/issues"
-    },
-    "homepage": "https://github.com/codingyu/laravel-goto-view/blob/master/README.md",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/codingyu/laravel-goto-view.git"
-    },
+    "repository": "https://github.com/codingyu/laravel-goto-view.git",
     "categories": [
         "Other"
     ],
@@ -41,6 +34,11 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Display path name"
+                },
+                "laravel_goto_view.maxLinesCount": {
+                    "type": "integer",
+                    "default": 300,
+                    "description": "stop the extension if the opened file lines count is more than"
                 },
                 "laravel_goto_view.folders": {
                     "type": "object",
