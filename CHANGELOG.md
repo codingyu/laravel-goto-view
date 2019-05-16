@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.3.1
+- Fixed #20
+
 ## 1.3.0
 - Fix vendor resolveing
 - Add a way to stop the extension from search big files

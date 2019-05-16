@@ -1,6 +1,6 @@
 'use strict';
 
-import { workspace, TextDocument, Uri } from 'vscode';
+import { workspace, TextDocument, Uri, ExtensionContext} from 'vscode';
 import * as fs from "fs";
 import * as path from "path";
 
@@ -52,6 +52,16 @@ function scanViewPaths(workspaceFolder, config) {
             let file = path.join(modulePath, element);
             if (fs.statSync(file).isDirectory()) {
                 folders[element.toLocaleLowerCase()] = "/Modules/" + element + "/resources/views";
+            }
+        });
+    }
+    // vendor
+    let vendorPath = path.join(workspaceFolder, 'resources/views/vendor');
+    if (fs.existsSync(vendorPath)) {
+        fs.readdirSync(vendorPath).forEach(element => {
+            let file = path.join(vendorPath, element);
+            if (fs.statSync(file).isDirectory()) {
+                folders[element.toLocaleLowerCase()] = "/resources/views/vendor/" + element;
             }
         });
     }
