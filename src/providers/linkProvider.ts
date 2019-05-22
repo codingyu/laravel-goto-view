@@ -30,7 +30,7 @@ export default class LinkProvider implements vsDocumentLinkProvider {
 
                         if (file != null) {
                             let start = new Position(line.lineNumber, line.text.indexOf(item) + 1);
-                            let end = start.translate(0, item.length - 1);
+                            let end = start.translate(0, item.length - 2);
                             let documentlink = new DocumentLink(new Range(start, end), file.fileUri);
                             documentLinks.push(documentlink);
                         };
