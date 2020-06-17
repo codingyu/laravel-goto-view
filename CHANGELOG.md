@@ -1,4 +1,6 @@
 # Change Log
+## 1.3.3
+- Add LICENSE
 
 ## 1.3.2
 - Merge pull request #21 from erlangp/patch-1(don't show underscore under single quote)
