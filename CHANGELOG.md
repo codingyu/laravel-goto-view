@@ -1,4 +1,7 @@
 # Change Log
+
+## 1.3.4
+Added default configuration for inertia & vue
 ## 1.3.3
 - Add LICENSE
 
