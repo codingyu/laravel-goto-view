@@ -43,13 +43,14 @@
                 },
                 "laravel_goto_view.regex": {
                     "type": "string",
-                    "default": "(?<=view\\(|@include\\(|@extends\\(|@component\\()(['\"])[^'\"]*\\1",
+                    "default": "(?<=view\\(|@include\\(|@extends\\(|@component\\(|Inertia::render\\()(['\"])[^'\"]*\\1",
                     "description": "Custom regex for matching strings"
                 },
                 "laravel_goto_view.folders": {
                     "type": "object",
                     "default": {
                         "default": "/resources/views",
+                        "js": "/resources/js/Pages",
                         "vendor": "/resources/views/vendor"
                     },
                     "items": {
@@ -62,7 +63,8 @@
                 "laravel_goto_view.extensions": {
                     "type": "array",
                     "default": [
-                        ".blade.php"
+                        ".blade.php",
+                        ".vue"
                     ],
                     "items": {
                         "type": "string"

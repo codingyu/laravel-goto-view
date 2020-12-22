@@ -26,8 +26,7 @@ export function getFilePaths(text: string, document: TextDocument) {
             }
         }
         for (let extension of config.extensions) {
-            showPath = showPath + extension;
-            let filePath = workspaceFolder + showPath;
+            let filePath = workspaceFolder + showPath + extension;
 
             if (fs.existsSync(filePath)) {
                 result.push({
