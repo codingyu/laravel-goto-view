@@ -9,12 +9,14 @@
 # Settings
 
 ## regex
+
 Custom regex for matching strings.
 
 ## maxLinesCount
+
 Maximum number of scanning rows.
 
-Default: 666 😂
+Default: 666
 
 ## folders
 
@@ -45,4 +47,3 @@ Use `Ctrl` or `Alt` + `click` to jump to the first matched file.
 ## folderTip
 
 Display the path name of the configuration.
-

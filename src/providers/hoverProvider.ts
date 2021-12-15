@@ -27,7 +27,7 @@ export default class HoverProvider implements vsHoverProvider {
 
             for (let i in filePaths) {
                 text += config.folderTip ? `\`${filePaths[i].name}\`` : '';
-                text += ` [${workspaceFolder.name + filePaths[i].showPath}](${filePaths[i].fileUri})  \r`;
+                text += ` [${workspaceFolder?.name + filePaths[i].showPath}](${filePaths[i].fileUri})  \r`;
             }
 
             return new Hover(new MarkdownString(text));

@@ -1,6 +1,6 @@
 'use strict';
 
-import { workspace, TextDocument, Uri, ExtensionContext} from 'vscode';
+import { workspace, TextDocument, Uri, ExtensionContext, WorkspaceConfiguration } from 'vscode';
 import * as fs from "fs";
 import * as path from "path";
 
@@ -10,7 +10,7 @@ export function getFilePath(text: string, document: TextDocument) {
 }
 
 export function getFilePaths(text: string, document: TextDocument) {
-    let workspaceFolder = workspace.getWorkspaceFolder(document.uri).uri.fsPath;
+    let workspaceFolder = workspace.getWorkspaceFolder(document.uri)?.uri.fsPath || '';
     let config = workspace.getConfiguration('laravel_goto_view');
     let paths = scanViewPaths(workspaceFolder, config);
     let file = text.replace(/\"|\'/g, '').replace('x-', 'components.').replace('livewire:', 'livewire.').replace(/\./g, '/').split('::');
@@ -41,7 +41,7 @@ export function getFilePaths(text: string, document: TextDocument) {
     return result;
 }
 
-function scanViewPaths(workspaceFolder, config) {
+function scanViewPaths(workspaceFolder: string, config: WorkspaceConfiguration) {
     let folders = Object.assign({}, config.folders);
 
     // Modules
