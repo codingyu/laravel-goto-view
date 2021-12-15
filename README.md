@@ -44,6 +44,8 @@ Search views according to the configured extensions.
 
 Use `Ctrl` or `Alt` + `click` to jump to the first matched file.
 
+> Mac or Windows, It depends on your configuration
+
 ## folderTip
 
 Display the path name of the configuration.
