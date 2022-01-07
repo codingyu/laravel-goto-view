@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.3.7
+
+Add support for View::make() facade
+
 ## 1.3.6
 
 Upgrade
