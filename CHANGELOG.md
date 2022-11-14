@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.3.8
+Support named parameter
+
 ## 1.3.7
 
 Add support for View::make() facade
