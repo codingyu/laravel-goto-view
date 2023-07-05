@@ -43,7 +43,7 @@
                 },
                 "laravel_goto_view.regex": {
                     "type": "string",
-                    "default": "(?<=view\\(['\"]|markdown\\(['\"]|\\(view:.['\"]|View::make\\(['\"]|@include\\(['\"]|@extends\\(['\"]|@component\\(['\"]|Inertia::render\\(['\"]|\\(component:.['\"]|\\<)(\\<x-|\\<livewire:|[^'\" \\/>]+)",
+                    "default": "(?<=view\\(['\"]|\\(view:.['\"]|View::make\\(['\"]|@include\\(['\"]|@extends\\(['\"]|@component\\(['\"]|Inertia::(?:render|modal)\\(['\"]|\\(component:.['\"]|<)(?:x-|livewire:|[^'\"\\s/>]+(?:\\/[^'\"\\s/>]+)*)",
                     "description": "Custom regex for matching strings"
                 },
                 "laravel_goto_view.folders": {
