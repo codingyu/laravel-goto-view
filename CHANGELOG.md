@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.3.9
+- default regex value now supports nested folders
+- default support for Inertia::modal macro
+- default support for mailable markdown
+
 ## 1.3.8
 Support named parameter
 
