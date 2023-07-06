@@ -1,3 +1,4 @@
+**[Laravel goto view](https://marketplace.visualstudio.com/items?itemName=codingyu.laravel-goto-view)**
 ![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/codingyu.laravel-goto-view)
 
 # How to use
