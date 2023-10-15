@@ -1,11 +1,11 @@
-**[Laravel goto view](https://marketplace.visualstudio.com/items?itemName=codingyu.laravel-goto-view)**
-![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/codingyu.laravel-goto-view)
+# Laravel goto view
+
+[![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/codingyu.laravel-goto-view)](https://marketplace.visualstudio.com/items?itemName=codingyu.laravel-goto-view)
+
 
 # How to use
 
 ![How to use](images/use.gif)
-
-# 🚀🚀🚀
 
 # Settings
 

@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.3.11
+- update README.md
+
+## 1.3.10
+- added assertViewIs to the default regex
+
 ## 1.3.9
 - default regex value now supports nested folders
 - default support for Inertia::modal macro
